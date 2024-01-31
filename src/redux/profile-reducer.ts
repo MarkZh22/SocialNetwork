@@ -13,6 +13,7 @@ type PostType = {
     name: string | null
     body: string | null
 }
+console.log('l')
 let initialState = {
     post: [] as  Array<PostType>,
     inputPost: {inputTitle:'',inputBody: '' } as InputPostType

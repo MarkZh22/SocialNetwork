@@ -6,7 +6,7 @@ import Nav from './components/NavLink';
 import styled from 'styled-components';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Preloader from './components/common/Preloader';
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer.tsx'))
 const LoginContainer = lazy(() => import('./components/Login/loginContainer'))
 const MessageContainer = lazy(() => import('./components/Message/MessageContainer'))
 const UsersContainer = lazy(() => import('./components/users/UsersContainer'))

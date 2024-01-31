@@ -8,7 +8,7 @@ export const USERS_PAGES_CURRENT = 'USERS-PAGES-CURRENT';
 export const USERS_TOTAL_COUNT = 'USERS-TOTAL-COUNT';
 export const TOGGLE_IS_FETCHING = 'UPDATE-IS-FETCHING';
 export const TOGGLE_IS_CHECK_FOLLOWING = 'TOGGLE_IS_CHECK_FOLLOWING';
-type UsersType = {
+export type UsersType = {
     id: number | null,
     name: string | null,
     photos: photosType,
@@ -23,7 +23,7 @@ let initialState = {
     isFetching: false,
     checkFollowing: [] as Array< any  >
 }
-type initialStateType = typeof initialState
+export type initialStateType = typeof initialState
 export const usersReducer = (state = initialState, action: usersTotalCountType | usersPageCurrentType | deleteUserType | followACType | unfollowACType | addUsersType | setIsFetchingType | toggleFollowingType): initialStateType => {
     switch (action.type) {
         case ADD_USERS:

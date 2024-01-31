@@ -7,13 +7,13 @@ export type photosType = {
     large: string | null,
     small: string | null
 }
-type profileType = {
+export type profileType = {
     aboutMe: string | null,
-    contacts: contactsType | null,
+    contacts: contactsType ,
     fullName: string | null,
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null,
-    photos: photosType | null
+    photos: photosType
 }
 type contactsType = {
     facebook: string | null,
@@ -25,7 +25,7 @@ type contactsType = {
     website: string | null,
     youtube: string | null
 }
-type initialStateType = {
+export type initialStateType = {
     name: string | null,
     adress: string | null,
     id: number | null,

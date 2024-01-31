@@ -1,6 +1,7 @@
 import React from 'react';
 import CreatePost from './CreatePost';
 import styled from 'styled-components';
+
 const MyPost = (props) => {
     let valueMessageTitle = props.store.inputPost.inputTitle;
     let valueMessageBody = props.store.inputPost.inputBody;

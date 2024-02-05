@@ -5,10 +5,10 @@ const UPDATE_NEW_POST_BODY = 'UPDATE-NEW-POST-BODY';
 // const SET_STATUS = 'SET_STATUS';
 const DELETE_POST_BODY = 'DELETE_POST_BODY';
 type InputPostType = { 
-    inputTitle: string | null
-    inputBody: string | null
+    inputTitle: string 
+    inputBody: string 
 }
-type PostType = {
+export type PostType = {
     id: number | null
     name: string | null
     body: string | null
@@ -17,7 +17,7 @@ let initialState = {
     post: [] as  Array<PostType>,
     inputPost: {inputTitle:'',inputBody: '' } as InputPostType
 }
-type initialStateType = typeof initialState
+export type initialStateType = typeof initialState
 const profileReducer = (state = initialState, action: addNewPostActionCreatorType | updateNewPostTextTitleType | updateNewPostTextBodyType | deletePostActionCreatorType):initialStateType => {
     switch (action.type) {
         case ADD_NEW_POST: {
@@ -80,9 +80,9 @@ export const addNewPostActionCreator = ():addNewPostActionCreatorType => {
 // };
 type updateNewPostTextTitleType = {
     type: typeof UPDATE_NEW_POST_TITLE,
-    valueInputName: string | null
+    valueInputName: string 
 }
-export const updateNewPostTextTitle = (valueInputName:string | null):updateNewPostTextTitleType => {
+export const updateNewPostTextTitle = (valueInputName:string ):updateNewPostTextTitleType => {
     return {
         type: UPDATE_NEW_POST_TITLE,
         valueInputName: valueInputName,
@@ -90,9 +90,9 @@ export const updateNewPostTextTitle = (valueInputName:string | null):updateNewPo
 };
 type updateNewPostTextBodyType = {
     type: typeof UPDATE_NEW_POST_BODY,
-    valueInputBody: string | null
+    valueInputBody: string 
 }
-export const updateNewPostTextBody = (valueInputBody: string | null):updateNewPostTextBodyType => {
+export const updateNewPostTextBody = (valueInputBody: string ):updateNewPostTextBodyType => {
     return {
         type: UPDATE_NEW_POST_BODY,
         valueInputBody: valueInputBody,

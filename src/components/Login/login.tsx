@@ -1,26 +1,42 @@
 import { Formik } from 'formik';
+import React from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
-const Login = (props) => {
-    
-    const validationsShema = yup.object().shape({
+
+type PropsType = {
+    status?: boolean 
+    isCaptcha: boolean | null
+    logOutFn: () => any
+    captcha: string | null
+    errorData: boolean | null
+    disLogin: (email: string | null, password: string | null, rememberMe: boolean, captcha: any) => void
+}
+type validationsShemaType = {
+    password?: string
+    confirmPassword?: string
+    email?: string
+    confirmEmail?: string
+    setCaptcha?: string
+}
+const Login: React.FC<PropsType> = (props) => {
+    const validationsShema = yup.object<validationsShemaType>().shape({
         password: yup
             .string()
-            .typeError(<Warning>'must be a string'</Warning>)
-            .required(<Warning>поле обязательно</Warning>),
+            .typeError('must be a string')
+            .required('поле обязательно'),
         confirmPassword: yup
             .string()
-            .oneOf([yup.ref('password')], <Warning>пароли не совпадают</Warning>)
-            .required(<Warning>поле обязательно</Warning>),
+            .oneOf([yup.ref('password')], 'пароли не совпадают')
+            .required('поле обязательно'),
         email: yup
             .string()
-            .email(<Warning>enter correct email</Warning>)
-            .required(<Warning>поле обязательно</Warning>),
+            .email('enter correct email')
+            .required('поле обязательно'),
         confirmEmail: yup
             .string()
-            .email(<Warning>enter correct email</Warning>)
-            .oneOf([yup.ref('email')], <Warning>email не совпадают</Warning>)
-            .required(<Warning>поле обязательно</Warning>),
+            .email('enter correct email')
+            .oneOf([yup.ref('email')],' email не совпадают')
+            .required('поле обязательно'),
         setCaptcha: yup.string()
 
     })
@@ -51,7 +67,7 @@ const Login = (props) => {
                             disabled={props.status}
                         />
                     </Block>
-                    {touched.email && errors.email && <p>{errors.email}</p>}
+                    {touched.email && errors.email && <Warning>{errors.email}</Warning>}
                     <Block>
                         <label htmlFor={`confirmEmail`}>Confirm email: </label>
                         <Input
@@ -63,7 +79,7 @@ const Login = (props) => {
                             disabled={props.status}
                         />
                     </Block>
-                    {touched.confirmEmail && errors.confirmEmail && <p>{errors.confirmEmail}</p>}
+                    {touched.confirmEmail && errors.confirmEmail && <Warning>{errors.confirmEmail}</Warning>}
                     <Block>
                         <label htmlFor={`password`}>Password: </label>
                         <Input
@@ -75,7 +91,7 @@ const Login = (props) => {
                             disabled={props.status}
                         />
                     </Block>
-                    {touched.password && errors.password && <p>{errors.password}</p>}
+                    {touched.password && errors.password && <Warning>{errors.password}</Warning>}
                     <Block >
                         <label htmlFor={`confirmPassword`}>Confirm password: </label>
                         <Input
@@ -87,7 +103,7 @@ const Login = (props) => {
                             disabled={props.status}
                         />
                     </Block>
-                    {touched.confirmPassword && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+                    {touched.confirmPassword && errors.confirmPassword && <Warning>{errors.confirmPassword}</Warning>}
                     {props.isCaptcha
                         ? <>
                         {props.captcha && <ImgCaptha alt='' src={props.captcha} />}
@@ -111,7 +127,7 @@ const Login = (props) => {
                     <BlockBtn>
                         <Btn
                             disabled={props.status || (!isValid && !dirty)}
-                            onClick={handleSubmit}
+                            onClick={(event: React.MouseEvent<HTMLElement>) => handleSubmit()}
                             type={`submit`}
                         >Log in</Btn>
                         <Btn

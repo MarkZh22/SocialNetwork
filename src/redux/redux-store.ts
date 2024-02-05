@@ -14,6 +14,5 @@ let rootReduser = combineReducers({
 })
 type RootReduserType = typeof rootReduser;
 export type AppGlobalType = ReturnType<RootReduserType>
-
 let store = createStore(rootReduser, applyMiddleware(thunkMiddleware));
 export default store;

@@ -1,7 +1,7 @@
 import { profileType } from '../../redux/profile-person-reducer.ts';
 import React from 'react';
 import Person from './Person.tsx';
-import MyPostContainer from './Post/MyPostContainer.jsx';
+import MyPostContainer from './Post/MyPostContainer.tsx';
 import styled from 'styled-components';
 const ImgContent = styled.img`
   width:100%;

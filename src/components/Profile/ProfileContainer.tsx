@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { AuthNavigate } from '../../hoc/AuthNavigate.jsx';
 import type { AppGlobalType } from '../../redux/redux-store.ts';
+
 const ProfileContainer = () => {
   const store = useSelector((state: AppGlobalType) => state.profilePersonCom.profile);
   const status = useSelector((state: AppGlobalType) => state.profilePersonCom.status);

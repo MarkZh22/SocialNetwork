@@ -1,3 +1,4 @@
+import { boolean } from "yup";
 import { authAPI,securityAPI } from "../api/api";
 const SET_USER_DATA = 'SET-USER-DATA';
 const CHECK_IS_AUTH = 'CHECK-IS-AUTH';
@@ -9,7 +10,7 @@ let initialState = {
     email: null as null| string,
     login:null as null| string,
     isAuth: false as null | boolean,
-    errorValidate: null,
+    errorValidate: null as boolean | null,
     captchaUrl: null as null| string,
     isCaptcha: null as null | boolean
 }

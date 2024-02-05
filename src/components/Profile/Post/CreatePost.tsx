@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import React, {useState } from 'react';
-const CreatePost = (props) => {
+
+type PropsType = {
+    name: string | null
+    body: string | null
+}
+const CreatePost: React.FC<PropsType> = (props) => {
     const [countLike, clickCountLike] = useState(0);
     const [countDislike, clickCountDis] = useState(0);
     return (

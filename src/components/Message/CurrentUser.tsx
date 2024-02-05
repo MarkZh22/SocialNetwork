@@ -1,6 +1,13 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import  styled  from "styled-components";
-const CurrentUser = (props) => {
+ 
+type PropsType = {
+    name?: string
+    id?: number
+
+}
+const CurrentUser:React.FC<PropsType> = (props) => {
     return (
         <NavLink to={`/message/user#` + props.id}><StyleUser>{props.name}</StyleUser></NavLink>
         

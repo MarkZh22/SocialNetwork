@@ -1,5 +1,10 @@
+import React from 'react';
 import styled from 'styled-components';
-const CurrentMessage = (props) => {
+
+type PropsType = {
+    message: string | null
+}
+const CurrentMessage: React.FC<PropsType> = (props) => {
     return (
         <CurrentUserMessage>{props.message}</CurrentUserMessage>
     )

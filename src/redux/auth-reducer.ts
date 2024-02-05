@@ -1,4 +1,3 @@
-import { boolean } from "yup";
 import { authAPI,securityAPI } from "../api/api";
 const SET_USER_DATA = 'SET-USER-DATA';
 const CHECK_IS_AUTH = 'CHECK-IS-AUTH';

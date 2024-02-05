@@ -1,8 +1,12 @@
+import React from 'react';
 import preloader from  '../../assects/images/preloader.svg';
 import styled from 'styled-components';
-const Preloader = (props) => {
- return <CenterPreloader> <img src={preloader} alt=""/> </CenterPreloader>
+
+
+const Preloader = () => {
+ return <CenterPreloader> <img src={preloader} alt="Preloader"/> </CenterPreloader>
 }
+
 const CenterPreloader = styled.div`
     display:flex;
     flex-direction:row;

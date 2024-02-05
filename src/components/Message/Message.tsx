@@ -1,7 +1,17 @@
 import styled from 'styled-components';
-import CurrentMessage from './CurrentMessage';
-import CurrentUser from './CurrentUser';
-const Message = (props) => {
+import CurrentMessage from './CurrentMessage.tsx';
+import CurrentUser from './CurrentUser.tsx';
+import {initialStateType} from "../../redux/message-reducer"
+import { initialStateType as StoreUsers } from '../../redux/users-reducer';
+import React from 'react';
+
+type PropsType = {
+    updateMessageText: (resTextarea: string) => void
+    addMessage: () => void
+    store: initialStateType
+    storeUsers: StoreUsers
+}
+const Message: React.FC<PropsType> = (props) => {
     const usersElemets = props.storeUsers.users.map(element => <CurrentUser name={element.name} key={element.id} id={element.id} />);
     const messageElements = props.store.messageData.map(element => <CurrentMessage message={element.message} key={element.id} />);
     const sendMessage = () => {
@@ -11,7 +21,7 @@ const Message = (props) => {
             props.addMessage();
         } else { alert('write all input') }
     }
-    const onChangeFun = (event) => {
+    const onChangeFun = (event: any) => {
         let resTextarea = event.target.value;
         props.updateMessageText(resTextarea);
     }
@@ -57,6 +67,7 @@ const TextareaElement = styled.textarea`
     border: 0.5px solid black;
     color: rgb(255 250 112);
     background-color:black;
+    
     &:focus{
         outline: none;
         border:1px solid rgb(255 250 112);

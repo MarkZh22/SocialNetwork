@@ -1,10 +1,10 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT';
 
-type initialStateType = {
+export type initialStateType = {
     // usersData: Array<string | null > 
     messageData: Array<newMessageType>,
-    newTextMessage: string | null
+    newTextMessage: string 
 }
 type newMessageType = {
     id: number| null,
@@ -49,10 +49,10 @@ export const addMessagePostActionCreator = (): addMessagePostActionCreatorType =
 //-------------------------------
 type updateMessageTextType = {
     type: typeof UPDATE_NEW_TEXT,
-    resTextarea :  string | null
+    resTextarea :  string
 
 }
-export const updateMessageText = (resTextarea : string | null):updateMessageTextType => {
+export const updateMessageText = (resTextarea : string):updateMessageTextType => {
     return {
         type: UPDATE_NEW_TEXT,
         resTextarea: resTextarea,

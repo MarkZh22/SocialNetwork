@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useEffect} from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkLoginThunk} from '../redux/auth-reducer.ts';
+import type { AppGlobalType } from '../redux/redux-store.ts';
 
 const HeaderContainer = styled.header`
     display: flex;
@@ -25,10 +26,10 @@ const Text = styled.div`
 const Header = () => {
     
     const dispatch = useDispatch();
-    let store = useSelector(state => state.auth.isAuth);
-    let loginUser = useSelector(state => state.auth.login);
+    let store = useSelector((state: AppGlobalType) => state.auth.isAuth);
+    let loginUser = useSelector((state: AppGlobalType) => state.auth.login);
     useEffect(() => {
-        dispatch(checkLoginThunk())
+        dispatch<any>(checkLoginThunk())
     })
     return (
         <HeaderContainer>

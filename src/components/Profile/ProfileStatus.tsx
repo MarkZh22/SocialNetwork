@@ -37,7 +37,7 @@ const ProfileStatus: React.FC<PropsType> = (props) => {
                     </span>
                                  //@ts-ignore
 
-                : <Input ref={inputRef} autoFocus={true} onChange={event => setValue(event.target.value)} onBlur={deactiveEditMode} type="text" value={value} />}
+                : <Input ref={inputRef} autoFocus={true} onChange={(event:ChangeEvent<HTMLInputElement>) => setValue(event.target.value)} onBlur={deactiveEditMode} type="text" value={value} />}
         </Row>
     )
 }

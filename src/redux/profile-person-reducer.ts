@@ -1,15 +1,19 @@
+import { AppGlobalType } from './redux-store';
 import { profileAPI } from "../api/api";
+import { ThunkAction } from "redux-thunk";
+
 const GET_CURRENT_USER = 'GET-CURRENT-USER';
 const SET_STATUS = 'SET_STATUS';
 const MY_PROFILE_DATA = 'MY_PROFILE_DATA';
 const SAVE_PHOTO_SUCCESS = ' SAVE_PHOTO_SUCCESS';
+
 export type photosType = {
     large: string | null,
     small: string | null
 }
 export type profileType = {
     aboutMe: string | null,
-    contacts: contactsType ,
+    contacts: contactsType,
     fullName: string | null,
     lookingForAJob: boolean,
     lookingForAJobDescription: string | null,
@@ -29,7 +33,7 @@ export type initialStateType = {
     name: string | null,
     adress: string | null,
     id: number | null,
-    profile: profileType | null ,
+    profile: profileType | null,
     status: string | null,
 }
 let initialState: initialStateType = {
@@ -39,7 +43,7 @@ let initialState: initialStateType = {
     profile: null,
     status: '',
 }
-const profilePersonReducer = (state = initialState, action: addMyProfileDataType | setStatusActionCreatorType | setPhotoSuccessType | getCurrentUserType):initialStateType => {
+const profilePersonReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case MY_PROFILE_DATA:
             return {
@@ -59,47 +63,53 @@ const profilePersonReducer = (state = initialState, action: addMyProfileDataType
                 status: action.status
             }
         case SAVE_PHOTO_SUCCESS:
-            debugger
+
             return {
                 ...state,
-                profile: {...state.profile,photos: action.photos} as profileType,
-                
+                profile: { ...state.profile, photos: action.photos } as profileType,
+
             }
         default: return state;
     }
 }
-//---------------------------
+type ActionsType = addMyProfileDataType | setStatusActionCreatorType | setPhotoSuccessType | getCurrentUserType
+type ThunkActionType = ThunkAction<Promise<void>, AppGlobalType, unknown, ActionsType>
+//--------------------------- addMyProfileDataType
 type addMyProfileDataType = {
     type: typeof MY_PROFILE_DATA,
-    data: any
+    data: {
+        login: string
+        email: string
+        id: number
+    }
 }
-export const addMyProfileData = ({ ...data }:any):addMyProfileDataType  => {
+export const addMyProfileData = ({ ...data }: any): addMyProfileDataType => {
     return {
         type: MY_PROFILE_DATA,
         data: { ...data }
 
     }
 }
-//---------------------------
+//--------------------------- setStatusActionCreatorType
 
 type setStatusActionCreatorType = {
     type: typeof SET_STATUS,
-    status: string | null  
+    status: string | null
 }
-export const setStatusActionCreator = (status: string | null):setStatusActionCreatorType => {
+export const setStatusActionCreator = (status: string | null): setStatusActionCreatorType => {
     return {
         type: SET_STATUS,
         status: status
     }
 };
-//---------------------------
-type setPhotoSuccessType = { 
+//--------------------------- setPhotoSuccessType 
+type setPhotoSuccessType = {
     type: typeof SAVE_PHOTO_SUCCESS,
     photos: photosType
 }
-export const setPhotoSuccess = (photos: photosType): setPhotoSuccessType=> ({type: SAVE_PHOTO_SUCCESS,photos});
+export const setPhotoSuccess = (photos: photosType): setPhotoSuccessType => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
-//---------------------------
+//--------------------------- getCurrentUserType
 type getCurrentUserType = {
     type: typeof GET_CURRENT_USER,
     data: any
@@ -108,33 +118,32 @@ type getCurrentUserType = {
 export const getCurrentUser = (data: any): getCurrentUserType => ({ type: GET_CURRENT_USER, data });
 
 //---------------------------
-export const getToUserIdProfile = (userId: number | null) => {
-    return async (dispatch: any) => {
+export const getToUserIdProfile = (userId: number | null): ThunkActionType => {
+    return async (dispatch) => {
         let data = await profileAPI.profileUserId(userId)
         dispatch(getCurrentUser(data))
 
     }
 }
-export const getStatusThunk = (userId:number | null) => {
-    return async (dispatch:any) => {
+export const getStatusThunk = (userId: number | null): ThunkActionType => {
+    return async (dispatch) => {
         let data = await profileAPI.getStatus(userId)
         dispatch(setStatusActionCreator(data))
     }
 }
 
-export const updateStatusThunk = (status:string | null) => {
-    return async (dispatch: any) => {
+export const updateStatusThunk = (status: string | null): ThunkActionType => {
+    return async (dispatch) => {
         let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setStatusActionCreator(status))
         }
     }
 }
-export const savePhotoThunk = (file:any) => {
-    return async (dispatch:any) => {
+export const savePhotoThunk = (file: any): ThunkActionType => {
+    return async (dispatch) => {
         let response = await profileAPI.savePhoto(file)
         if (response.data.resultCode === 0) {
-            debugger
             dispatch(setPhotoSuccess(response.data.data.photos))
         }
     }

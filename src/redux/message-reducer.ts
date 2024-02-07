@@ -16,7 +16,7 @@ let initialState: initialStateType = {
     newTextMessage: '',
 }
 
-const messageReducer = (state = initialState, action: addMessagePostActionCreatorType | updateMessageTextType):initialStateType => { 
+const messageReducer = (state = initialState, action: ActionsType):initialStateType => { 
     switch (action.type) {
         case ADD_POST: {
             let newMessage = {
@@ -38,6 +38,8 @@ const messageReducer = (state = initialState, action: addMessagePostActionCreato
         default: return state
     }
 }
+type ActionsType =  addMessagePostActionCreatorType | updateMessageTextType
+
 type addMessagePostActionCreatorType = {
     type: typeof ADD_POST
 }

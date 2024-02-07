@@ -3,7 +3,7 @@ import CurrentMessage from './CurrentMessage.tsx';
 import CurrentUser from './CurrentUser.tsx';
 import {initialStateType} from "../../redux/message-reducer"
 import { initialStateType as StoreUsers } from '../../redux/users-reducer';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 type PropsType = {
     updateMessageText: (resTextarea: string) => void
@@ -21,7 +21,7 @@ const Message: React.FC<PropsType> = (props) => {
             props.addMessage();
         } else { alert('write all input') }
     }
-    const onChangeFun = (event: any) => {
+    const onChangeFun = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let resTextarea = event.target.value;
         props.updateMessageText(resTextarea);
     }

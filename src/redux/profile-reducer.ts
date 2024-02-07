@@ -1,8 +1,6 @@
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const UPDATE_NEW_POST_TITLE = 'UPDATE-NEW-POST-TITLE';
 const UPDATE_NEW_POST_BODY = 'UPDATE-NEW-POST-BODY';
-// const GET_CURRENT_USER = 'GET-CURRENT-USER';
-// const SET_STATUS = 'SET_STATUS';
 const DELETE_POST_BODY = 'DELETE_POST_BODY';
 type InputPostType = { 
     inputTitle: string 
@@ -18,7 +16,7 @@ let initialState = {
     inputPost: {inputTitle:'',inputBody: '' } as InputPostType
 }
 export type initialStateType = typeof initialState
-const profileReducer = (state = initialState, action: addNewPostActionCreatorType | updateNewPostTextTitleType | updateNewPostTextBodyType | deletePostActionCreatorType):initialStateType => {
+const profileReducer = (state = initialState, action: ActionsType):initialStateType => {
     switch (action.type) {
         case ADD_NEW_POST: {
             let newPost: PostType = {
@@ -45,16 +43,6 @@ const profileReducer = (state = initialState, action: addNewPostActionCreatorTyp
                 inputPost:{...state.inputPost,inputBody: action.valueInputBody}
             }
         }
-        // case GET_CURRENT_USER:
-        //     return {
-        //         ...state,
-        //         profile: action.currentUser
-        //     }
-        // case SET_STATUS:
-        //     return {
-        //         ...state,
-        //         status: action.status
-        //     }
         case DELETE_POST_BODY:
             return {
                 ...state,
@@ -63,6 +51,7 @@ const profileReducer = (state = initialState, action: addNewPostActionCreatorTyp
         default: return state;
     }
 }
+type ActionsType = addNewPostActionCreatorType | updateNewPostTextTitleType | updateNewPostTextBodyType | deletePostActionCreatorType
 // actions creator
 type addNewPostActionCreatorType = {
     type: typeof ADD_NEW_POST
@@ -72,12 +61,7 @@ export const addNewPostActionCreator = ():addNewPostActionCreatorType => {
         type: ADD_NEW_POST,
     }
 };
-// export const setStatusActionCreator = (status) => {
-//     return {
-//         type: SET_STATUS,
-//         status: status
-//     }
-// };
+
 type updateNewPostTextTitleType = {
     type: typeof UPDATE_NEW_POST_TITLE,
     valueInputName: string 
@@ -109,29 +93,4 @@ export const deletePostActionCreator = (id: number | null):deletePostActionCreat
         id: id
     }
 }
-// export const getCurrentUser = (currentUser) => ({ type: GET_CURRENT_USER, currentUser });
-//thunks creator
-// export const getToUserIdProfile = (userId) => {
-//     return async (dispatch) => {
-//         let data = await profileAPI.profileUserId(userId)
-//         dispatch(getCurrentUser(data))
-//     }
-// }
-
-// export const getStatusThunk = (userId) => {
-//     return async (dispatch) => {
-//         let data = await profileAPI.getStatus(userId)
-//         dispatch(setStatusActionCreator(data))
-//     }
-// }
-
-// export const updateStatusThunk = (status) => {
-//     return async (dispatch) => {
-//         let response = await profileAPI.updateStatus(status)
-//         if (response.data.resultCode === 0) {
-//             dispatch(setStatusActionCreator(status))
-//         }
-//     }
-// }
-
 export default profileReducer;

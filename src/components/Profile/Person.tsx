@@ -3,7 +3,7 @@ import BlockPerson from './BlockPerson.tsx';
 import userPhoto from './../../assects/images/user.png';
 import { useDispatch } from 'react-redux';
 import type { profileType } from '../../redux/profile-person-reducer';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 const FlexRowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -31,8 +31,8 @@ type PropsType = {
 const  Person: React.FC<PropsType> = ({profile,status,updateStatus,savePhoto,profileUserId}) => {
   
   const dispatch = useDispatch<any>()
-  const onMainPhotoSelected = (e: any) =>{
-    if(e.target.files.length){
+  const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) =>{
+    if(e.target.files !== null){
       dispatch(savePhoto(e.target.files[0]))
     }
   }

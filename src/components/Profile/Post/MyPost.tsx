@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import CreatePost from './CreatePost.tsx';
 import styled from 'styled-components';
 import type { initialStateType } from '../../../redux/profile-reducer';
@@ -19,11 +19,11 @@ const MyPost: React.FC<PropsType> = (props) => {
             alert('Error: Enter text in all fields !')
         }
     }
-    const onChangeMessageTitle = (event: any) => {
+    const onChangeMessageTitle = (event: ChangeEvent<HTMLInputElement>) => {
         let valueInputName = event.target.value;
         props.updateNewPostTextTitle(valueInputName);
     }
-    const onChangeMessageBody = (event: any) => {
+    const onChangeMessageBody = (event: ChangeEvent<HTMLInputElement>) => {
         let valueInputBody = event.target.value;
         props.updateNewPostTextBody(valueInputBody);
     }

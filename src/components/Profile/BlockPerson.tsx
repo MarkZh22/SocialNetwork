@@ -1,45 +1,28 @@
-import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import Preloader from '../common/Preloader.jsx';
-import type { AppGlobalType } from '../../redux/redux-store.ts';
-import {
-  addMyProfileData, profileType
-} from '../../redux/profile-person-reducer.ts';
 import styled from 'styled-components';
-import { useEffect } from 'react';
-import { profileAPI } from '../../api/api.js';
 import ProfileStatus from './ProfileStatus.tsx';
-
-
+import { StoreTypeProfile } from './Profile.tsx';
+import { ThunkActionType } from '../../redux/profile-person-reducer.ts';
 type PropsType = {
-  profile: profileType 
-  status: string
-  updateStatus: any
-  profileUserId: number
+  store: StoreTypeProfile
+  status: string | null
+  updateStatus: (status: string) => ThunkActionType
 }
 const BlockPerson: React.FC<PropsType> = (props) => {
-  const dispatch = useDispatch<any>()
-  const checkLog = useSelector((state: AppGlobalType )=> state.auth.isAuth);
-  useEffect(() => {
-    if (checkLog) {
-        profileAPI.myProfileData().then((data) => {
-        dispatch(addMyProfileData({ ...data }))
-      })
-    }
-  }, [checkLog, dispatch])
   return (
     <>
-      {!props.profile ? <Preloader /> : <Block>
+      {!props.store ? <Preloader /> : <Block>
         <Row>
-          <Text>Name:</Text><TextBottomBorder>{props.profile.fullName ? props.profile.fullName : 'no'}</TextBottomBorder>
+          <Text>Name:</Text><TextBottomBorder>{props.store.fullName ? props.store.fullName : 'no'}</TextBottomBorder>
         </Row>
         <Row>
-          <Text>Contacts:</Text><TextBottomBorder>{props.profile.contacts.instagram ? props.profile.contacts.instagram : 'no'}</TextBottomBorder>
+          <Text>Contacts:</Text><TextBottomBorder>{(props.store.contacts && props.store.contacts.instagram) ? props.store.contacts.instagram : 'no'}</TextBottomBorder>
         </Row>
         <Row>
-          <Text>ID:</Text><TextBottomBorder>{props.profileUserId}</TextBottomBorder>
+          <Text>ID:</Text><TextBottomBorder>{props.store.userId}</TextBottomBorder>
         </Row>
-        <ProfileStatus profile = {props.profile} status = {props.status} updateStatus={props.updateStatus} profileUserId={props.profileUserId}/>
+        <ProfileStatus store = {props.store} status = {props.status} updateStatus={props.updateStatus} />
       </Block>}
     </>
   )

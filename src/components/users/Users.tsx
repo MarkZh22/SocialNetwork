@@ -1,4 +1,5 @@
 import styled from "styled-components";
+//@ts-ignore
 import userAvatar from '../../assects/images/user.png';
 import { NavLink } from "react-router-dom";
 import { UsersType, initialStateType } from "../../redux/users-reducer";

@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { authAPI, securityAPI } from "../api/api";
+import { authAPI, securityAPI } from "../api/api.ts";
 import type { AppGlobalType } from "./redux-store";
 
 const SET_USER_DATA = 'SET-USER-DATA';
@@ -11,7 +11,7 @@ let initialState = {
     id: null as null | number,
     email: null as null | string,
     login: null as null | string,
-    isAuth: false as null | boolean,
+    isAuth: false as  boolean,
     errorValidate: null as boolean | null,
     captchaUrl: null as null | string,
     isCaptcha: null as null | boolean

@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from 'styled-components';
-import type { profileType } from "../../redux/profile-person-reducer";
+import { StoreTypeProfile } from "./Profile";
+import { ThunkActionType } from "../../redux/profile-person-reducer";
 type PropsType = {
-    profile: profileType 
-    status: string
-    updateStatus: any
-    profileUserId: number
-
+    store: StoreTypeProfile
+    status: string | null
+    updateStatus: (status: string ) => ThunkActionType
   }
 const ProfileStatus: React.FC<PropsType> = (props) => {
     let [editMode, setEditMode] = useState(false);
@@ -16,12 +15,12 @@ const ProfileStatus: React.FC<PropsType> = (props) => {
     const dispatch = useDispatch<any>()
     const inputRef = useRef(0)
     const activeEditMode = () => {
-        if (props.profileUserId === 30236) {
+        if (props.store.userId === 30236) {
             setEditMode(true)
         }
     }
     const deactiveEditMode = () => {
-        if (props.profileUserId === 30236) {
+        if (props.store.userId === 30236) {
             setEditMode(false)
              //@ts-ignore
             dispatch(props.updateStatus(inputRef.current.value))

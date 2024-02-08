@@ -7,7 +7,7 @@ import { AuthNavigate } from '../../hoc/AuthNavigate.jsx';
 import type { AppGlobalType } from '../../redux/redux-store.ts';
 
 const ProfileContainer = () => {
-  const store = useSelector((state: AppGlobalType) => state.profilePersonCom.profile);
+  const store = useSelector((state: AppGlobalType) => state.profilePersonCom);
   const status = useSelector((state: AppGlobalType) => state.profilePersonCom.status);
   const auth = useSelector((state: AppGlobalType) => state.auth.isAuth);
   const [checkLog] = useState(auth)
@@ -26,7 +26,7 @@ const ProfileContainer = () => {
   let AuthNavigateComponent = AuthNavigate(Profile)
 
   return (
-     <AuthNavigateComponent  profile = {store} profileUserId={userId} status = {status} updateStatus = {updateStatusThunk} savePhoto={savePhotoThunk}/>
+     <AuthNavigateComponent  store = {store} status = {status} updateStatus = {updateStatusThunk} savePhoto={savePhotoThunk}/>
   )
 }
 export default ProfileContainer;

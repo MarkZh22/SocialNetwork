@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { usersAPI } from "../api/api";
+import { ResultCodesEnum, usersAPI } from "../api/api.ts";
 import { photosType } from "./profile-person-reducer";
 import type { AppGlobalType } from "./redux-store";
 
@@ -21,9 +21,9 @@ export type UsersType = {
 }
 let initialState = {
     users: [] as Array<UsersType | any>,
-    pageSize: 10 as number | null,
+    pageSize: 10 as number ,
     totalUsersCount: 0 as number | null,
-    currentPage: 1 as number | null,
+    currentPage: 1 as number ,
     isFetching: false,
     checkFollowing: [] as Array<any>
 }
@@ -97,9 +97,9 @@ export const usersTotalCount = (totalCount: number | null): usersTotalCountType 
 
 type usersPageCurrentType = {
     type: typeof USERS_PAGES_CURRENT,
-    usersPage: number | null
+    usersPage: number 
 }
-export const usersPageCurrent = (usersPage: number | null): usersPageCurrentType => ({ type: USERS_PAGES_CURRENT, usersPage })
+export const usersPageCurrent = (usersPage: number ): usersPageCurrentType => ({ type: USERS_PAGES_CURRENT, usersPage })
 //----------------------
 type deleteUserType = {
     type: typeof DELETE,
@@ -142,7 +142,7 @@ export const toggleFollowing = (isFetchingFollowing: boolean, id: number | null)
 
 // thunks creator ->
 
-export const getUsersThunkCreate = (currentPage: number | null, pageSize: number | null): ThunkActionType => {
+export const getUsersThunkCreate = (currentPage: number, pageSize: number): ThunkActionType => {
     return async (dispatch) => {
         dispatch(toggleFollowing(true, null))
         let data = await usersAPI.getUsers(currentPage, pageSize)
@@ -152,7 +152,7 @@ export const getUsersThunkCreate = (currentPage: number | null, pageSize: number
         dispatch(usersTotalCount(data.totalCount / 100))
     }
 }
-export const onClickPageThunkCreate = (p: number | null, pageSize: number | null): ThunkActionType => {
+export const onClickPageThunkCreate = (p: number, pageSize: number): ThunkActionType => {
     return async (dispatch) => {
         dispatch(usersPageCurrent(p))
         let data = await usersAPI.getUsers(p, pageSize)
@@ -162,22 +162,22 @@ export const onClickPageThunkCreate = (p: number | null, pageSize: number | null
     }
 }
 
-export const followThunk = (userId: number | null): ThunkActionType => {
+export const followThunk = (userId: number): ThunkActionType => {
     return async (dispatch) => {
         dispatch(toggleFollowing(true, userId))
         let data = await usersAPI.postFollower(userId)
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(followAC(userId))
         }
         dispatch(toggleFollowing(false, userId))
     }
 }
 
-export const unFollowThunk = (userId: number | null): ThunkActionType => {
+export const unFollowThunk = (userId: number): ThunkActionType => {
     return async (dispatch) => {
         dispatch(toggleFollowing(true, userId))
         let data = await usersAPI.deleteFollower(userId)
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(unfollowAC(userId))
         }
         dispatch(toggleFollowing(false, userId))

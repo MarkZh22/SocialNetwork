@@ -26,13 +26,13 @@ const UsersContainer = () => {
     const isFetching = useSelector((state: AppGlobalType) => state.usersCom.isFetching);
     const checkFollowing = useSelector((state: AppGlobalType) => state.usersCom.checkFollowing)
     const dispatch = useDispatch<any>();
-    let onClickPage = (p: number | null) => {
+    let onClickPage = (p: number) => {
         dispatchOnClickPageThunk(p,pageSize)
     } 
-    const dispatchOnClickPageThunk = (p: number | null, pageSize: number | null) => {
+    const dispatchOnClickPageThunk = (p: number, pageSize: number) => {
         dispatch(onClickPageThunkCreate(p, pageSize))
     }
-    const dispatchUsersThunk = (currentPage: number | null, pageSize: number | null) => {
+    const dispatchUsersThunk = (currentPage: number, pageSize: number) => {
         dispatch(getUsersThunkCreate(currentPage, pageSize))
     }
     const dispatchFollowThunk = (id: number) => {

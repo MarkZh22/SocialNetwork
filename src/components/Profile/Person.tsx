@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import BlockPerson from './BlockPerson.tsx';
+//@ts-ignore
 import userPhoto from './../../assects/images/user.png';
 import { useDispatch } from 'react-redux';
-import type { profileType } from '../../redux/profile-person-reducer';
 import React, { ChangeEvent } from 'react';
+import { ThunkActionType } from '../../redux/profile-person-reducer.ts';
+import { StoreTypeProfile } from './Profile.tsx';
 const FlexRowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -22,25 +24,23 @@ const ImgBlock = styled.div`
   border:1px solid black;
 `;
 type PropsType = {
-  profile: profileType 
-  status:string 
-  updateStatus: any
-  savePhoto: any
-  profileUserId: number
+  store: StoreTypeProfile
+  status: string | null
+  updateStatus: (status: string ) => ThunkActionType
+  savePhoto: (file: any) => ThunkActionType
 }
-const  Person: React.FC<PropsType> = ({profile,status,updateStatus,savePhoto,profileUserId}) => {
-  
+const  Person: React.FC<PropsType> = (props) => {
   const dispatch = useDispatch<any>()
   const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) =>{
     if(e.target.files !== null){
-      dispatch(savePhoto(e.target.files[0]))
+      dispatch(props.savePhoto(e.target.files[0]))
     }
   }
     return (
         <FlexRowContainer>
-            <ImgBlock>{profile && profile.photos.large ? <Img src= {profile.photos.large}/>  : <Img src= {userPhoto}/>  }</ImgBlock>
-            {profile && profileUserId === 30236 ? <input type='file' onChange={onMainPhotoSelected}/> : null}
-            <BlockPerson profileUserId={profileUserId} profile = {profile} status={status} updateStatus={updateStatus}/>
+            <ImgBlock>{props.store.photos  && props.store.photos.large ? <Img src= {props.store.photos.large}/>  : <Img src= {userPhoto}/>  }</ImgBlock>
+            {props.store && props.store.userId === 30236 ? <input type='file' onChange={onMainPhotoSelected}/> : null}
+            <BlockPerson store = {props.store} status = {props.status} updateStatus={props.updateStatus}/>
         </FlexRowContainer>
     )
     

@@ -1,25 +1,15 @@
 import { AppGlobalType } from './redux-store';
-import { profileAPI } from "../api/api";
+import { profileAPI } from "../api/api.ts";
 import { ThunkAction } from "redux-thunk";
 
 const GET_CURRENT_USER = 'GET-CURRENT-USER';
 const SET_STATUS = 'SET_STATUS';
-const MY_PROFILE_DATA = 'MY_PROFILE_DATA';
 const SAVE_PHOTO_SUCCESS = ' SAVE_PHOTO_SUCCESS';
-
 export type photosType = {
-    large: string | null,
-    small: string | null
+    large: string 
+    small: string 
 }
-export type profileType = {
-    aboutMe: string | null,
-    contacts: contactsType,
-    fullName: string | null,
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string | null,
-    photos: photosType
-}
-type contactsType = {
+export type contactsType = {
     facebook: string | null,
     github: string | null,
     instagram: string | null,
@@ -30,32 +20,37 @@ type contactsType = {
     youtube: string | null
 }
 export type initialStateType = {
-    name: string | null,
-    adress: string | null,
-    id: number | null,
-    profile: profileType | null,
+    aboutMe: string | null,
+    contacts: contactsType | null,
+    fullName:  string | null,
+    lookingForAJob: boolean | null,
+    lookingForAJobDescription:string | null,
+    photos: photosType | null,
+    userId: number | null,
     status: string | null,
 }
 let initialState: initialStateType = {
-    name: null,
-    adress: null,
-    id: null,
-    profile: null,
+    aboutMe: null,
+    contacts: null,
+    fullName:  null,
+    lookingForAJob: null,
+    lookingForAJobDescription:null,
+    photos: null,
+    userId: null,
     status: '',
 }
 const profilePersonReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
-        case MY_PROFILE_DATA:
-            return {
-                ...state,
-                name: action.data.login,
-                adress: action.data.email,
-                id: action.data.id
-            }
         case GET_CURRENT_USER:
             return {
                 ...state,
-                profile: action.data
+                aboutMe: action.data.aboutMe,
+                userId: action.data.userId,
+                lookingForAJobDescription: action.data.lookingForAJobDescription,
+                fullName: action.data.fullName,
+                lookingForAJob: action.data.lookingForAJob,
+                contacts:  action.data.contacts,
+                photos: action.data.photos
             }
         case SET_STATUS:
             return {
@@ -66,37 +61,18 @@ const profilePersonReducer = (state = initialState, action: ActionsType): initia
 
             return {
                 ...state,
-                profile: { ...state.profile, photos: action.photos } as profileType,
-
+                photos: action.photos
             }
         default: return state;
     }
 }
-type ActionsType = addMyProfileDataType | setStatusActionCreatorType | setPhotoSuccessType | getCurrentUserType
-type ThunkActionType = ThunkAction<Promise<void>, AppGlobalType, unknown, ActionsType>
-//--------------------------- addMyProfileDataType
-type addMyProfileDataType = {
-    type: typeof MY_PROFILE_DATA,
-    data: {
-        login: string
-        email: string
-        id: number
-    }
-}
-export const addMyProfileData = ({ ...data }: any): addMyProfileDataType => {
-    return {
-        type: MY_PROFILE_DATA,
-        data: { ...data }
-
-    }
-}
-//--------------------------- setStatusActionCreatorType
-
+type ActionsType =   setStatusActionCreatorType | setPhotoSuccessType | getCurrentUserType
+export type ThunkActionType = ThunkAction<Promise<void>, AppGlobalType, unknown, ActionsType>
 type setStatusActionCreatorType = {
     type: typeof SET_STATUS,
-    status: string | null
+    status: string 
 }
-export const setStatusActionCreator = (status: string | null): setStatusActionCreatorType => {
+export const setStatusActionCreator = (status: string ): setStatusActionCreatorType => {
     return {
         type: SET_STATUS,
         status: status
@@ -118,21 +94,21 @@ type getCurrentUserType = {
 export const getCurrentUser = (data: any): getCurrentUserType => ({ type: GET_CURRENT_USER, data });
 
 //---------------------------
-export const getToUserIdProfile = (userId: number | null): ThunkActionType => {
+export const getToUserIdProfile = (userId: number): ThunkActionType => {
     return async (dispatch) => {
         let data = await profileAPI.profileUserId(userId)
         dispatch(getCurrentUser(data))
 
     }
 }
-export const getStatusThunk = (userId: number | null): ThunkActionType => {
+export const getStatusThunk = (userId: number ): ThunkActionType => {
     return async (dispatch) => {
         let data = await profileAPI.getStatus(userId)
         dispatch(setStatusActionCreator(data))
     }
 }
 
-export const updateStatusThunk = (status: string | null): ThunkActionType => {
+export const updateStatusThunk = (status: string ): ThunkActionType => {
     return async (dispatch) => {
         let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {

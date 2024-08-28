@@ -31,7 +31,6 @@ const StyleGridContent = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
 `;
 const App = () => {
-
   return (
     <AppGlobal>
       <Header />

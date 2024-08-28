@@ -1,9 +1,9 @@
 import React from 'react';
-import Preloader from '../common/Preloader.jsx';
+import Preloader from '../common/Preloader';
 import styled from 'styled-components';
-import ProfileStatus from './ProfileStatus.tsx';
-import { StoreTypeProfile } from './Profile.tsx';
-import { ThunkActionType } from '../../redux/profile-person-reducer.ts';
+import ProfileStatus from './ProfileStatus';
+import { StoreTypeProfile } from './Profile';
+import { ThunkActionType } from 'redux/profile-person-reducer';
 type PropsType = {
   store: StoreTypeProfile
   status: string | null

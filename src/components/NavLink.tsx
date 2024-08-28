@@ -14,7 +14,7 @@ const FlexContainer = styled.ul`
   gap: 10px;
   grid-area: navGrid;
 `;
-const Link = ({ isActive }) => isActive ? 'link-active' : 'link';
+const Link = ({ isActive }: any) => isActive ? 'link-active' : 'link';
 const Nav = () => {
   return (
     <Container>

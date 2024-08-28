@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import BlockPerson from './BlockPerson.tsx';
+import BlockPerson from './BlockPerson';
 //@ts-ignore
 import userPhoto from './../../assects/images/user.png';
 import { useDispatch } from 'react-redux';
 import React, { ChangeEvent } from 'react';
-import { ThunkActionType } from '../../redux/profile-person-reducer.ts';
-import { StoreTypeProfile } from './Profile.tsx';
+import { ThunkActionType } from 'redux/profile-person-reducer';
+import { StoreTypeProfile } from './Profile';
 const FlexRowContainer = styled.div`
   display: flex;
   flex-direction: row;

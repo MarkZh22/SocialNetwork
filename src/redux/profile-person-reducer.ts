@@ -1,5 +1,5 @@
 import { AppGlobalType } from './redux-store';
-import { profileAPI } from "../api/api.ts";
+import { profileAPI } from "../api/api";
 import { ThunkAction } from "redux-thunk";
 
 const GET_CURRENT_USER = 'GET-CURRENT-USER';

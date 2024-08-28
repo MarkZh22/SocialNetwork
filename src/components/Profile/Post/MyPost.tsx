@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import CreatePost from './CreatePost.tsx';
+import CreatePost from './CreatePost';
 import styled from 'styled-components';
-import type { initialStateType } from '../../../redux/profile-reducer';
+import type { initialStateType } from 'redux/profile-reducer';
 type PropsType = {
     store: initialStateType
     updateNewPostTextBody: (valueInputBody: string ) => void

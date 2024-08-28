@@ -65,7 +65,7 @@ export const profileAPI = {
         return res.data;
 
     },
-    async savePhoto(photoFile) {
+    async savePhoto(photoFile: any) {
         const formData = new FormData();
         formData.append('image', photoFile)
         return await instance.put(`profile/photo`, formData, {
@@ -80,7 +80,7 @@ export const authAPI = {
         const res = await instance.get(`auth/me`);
         return res.data;
     },
-    async login(email, password, rememberMe = false, captcha = null) {
+    async login(email: any, password: any, rememberMe: boolean = false, captcha: any = null) {
         const res = await instance.post(`auth/login`, { email, password, rememberMe, captcha });
         return res.data;
     },

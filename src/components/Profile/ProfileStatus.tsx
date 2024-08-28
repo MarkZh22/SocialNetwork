@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from 'styled-components';
 import { StoreTypeProfile } from "./Profile";
-import { ThunkActionType } from "../../redux/profile-person-reducer";
+import { ThunkActionType } from "redux/profile-person-reducer";
 type PropsType = {
     store: StoreTypeProfile
     status: string | null

@@ -1,7 +1,7 @@
-import type { ThunkActionType, contactsType,photosType } from '../../redux/profile-person-reducer.ts';
+import type { ThunkActionType, contactsType,photosType } from 'redux/profile-person-reducer';
 import React from 'react';
-import Person from './Person.tsx';
-import MyPostContainer from './Post/MyPostContainer.tsx';
+import Person from './Person';
+import MyPostContainer from './Post/MyPostContainer';
 import styled from 'styled-components';
 
 const ImgContent = styled.img`

@@ -2,10 +2,10 @@ import styled from "styled-components";
 //@ts-ignore
 import userAvatar from '../../assects/images/user.png';
 import { NavLink } from "react-router-dom";
-import { UsersType, initialStateType } from "../../redux/users-reducer";
+import { UsersType, initialStateType } from "redux/users-reducer";
 import React from "react";
 type PropsType = {
-    totalUsersCount: number
+    totalUsersCount: any
     pageSize: number
     isFetching: boolean
     toggleIsFetching: (isFetching: boolean)=>void
@@ -16,14 +16,14 @@ type PropsType = {
     addUnfollow: (userId: number) => void
     currentDelete:  (userId: number) => void
     setTotalCount:  (totalCount: number) => void
-    onClickPage: (p: number | null) => void
+    onClickPage: (p: number ) => void
     currentPage: number | null
     checkFollowing: any[]
     disToggleFollowing:(isFetching: boolean, id: number) => void
     followThunk: (id: number) => void
     unFollowThunk:  (id: number) => void
-    getUsersThunkCreate: (currentPage: number | null, pageSize: number | null) => void
-    onClickPageThunk:  (p: number | null, pageSize: number | null) => void
+    getUsersThunkCreate: (currentPage: number , pageSize: number ) => void
+    onClickPageThunk:  (p: number , pageSize: number) => void
 }
 let Users: React.FC<PropsType> = (props) => {
 

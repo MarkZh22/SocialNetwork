@@ -1,14 +1,14 @@
 import { followAC, unfollowAC, addUsers, deleteUser, 
          usersPageCurrent, usersTotalCount, setIsFetching, 
          toggleFollowing, getUsersThunkCreate, 
-         onClickPageThunkCreate,unFollowThunk,followThunk} from "../../redux/users-reducer.ts";
+         onClickPageThunkCreate,unFollowThunk,followThunk} from "../../redux/users-reducer";
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
-import Users from './Users.tsx';
-import Preloader from "../common/Preloader.jsx";
-import { AuthNavigate } from '../../hoc/AuthNavigate.jsx';
-import type { AppGlobalType } from "../../redux/redux-store.ts";
-import type { UsersType } from "../../redux/users-reducer.ts"; 
+import Users from './Users';
+import Preloader from "../common/Preloader";
+import { AuthNavigate } from '../../hoc/AuthNavigate';
+import type { AppGlobalType } from "../../redux/redux-store";
+import type { UsersType } from "../../redux/users-reducer";
 
 
 const UsersContainer = () => {

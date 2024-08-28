@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector,useDispatch} from 'react-redux';
-import { addMessagePostActionCreator, updateMessageText } from '../../redux/message-reducer.ts';
-import Message from './Message.tsx';
-import { AuthNavigate } from '../../hoc/AuthNavigate.jsx';
-import type { AppGlobalType } from '../../redux/redux-store.ts';
+import { addMessagePostActionCreator, updateMessageText } from '../../redux/message-reducer';
+import Message from './Message';
+import { AuthNavigate } from '../../hoc/AuthNavigate';
+import type { AppGlobalType } from '../../redux/redux-store';
 
 const MessageContainer = () => {
     const store = useSelector((state: AppGlobalType) => state.messageCom);

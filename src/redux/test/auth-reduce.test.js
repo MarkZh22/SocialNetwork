@@ -12,7 +12,7 @@ test('isAuth check', () => {
     expect(newState.isAuth).toBe(false);
 });
 test('data check', () => {
-    let data = {id:1,email:"mark@gmail.com", login: "123"}
+    let data = {id:1,email:"", login: "123"}
     let action = setUserData({...data});
     let newState = authReducer(state,action);
     expect(newState.login).toBe("123");

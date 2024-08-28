@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkLoginThunk} from '../redux/auth-reducer.ts';
-import type { AppGlobalType } from '../redux/redux-store.ts';
+import { checkLoginThunk} from '../redux/auth-reducer';
+import type { AppGlobalType } from '../redux/redux-store';
 
 const HeaderContainer = styled.header`
     display: flex;

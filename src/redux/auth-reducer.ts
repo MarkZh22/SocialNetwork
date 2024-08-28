@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { authAPI, securityAPI } from "../api/api.ts";
+import { authAPI, securityAPI } from "../api/api";
 import type { AppGlobalType } from "./redux-store";
 
 const SET_USER_DATA = 'SET-USER-DATA';

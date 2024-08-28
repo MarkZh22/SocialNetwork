@@ -1,10 +1,10 @@
-import Profile from './Profile.tsx';
+import Profile from './Profile';
 import React, { useEffect, useState } from 'react';
-import { getStatusThunk, getToUserIdProfile, updateStatusThunk,savePhotoThunk } from '../../redux/profile-person-reducer.ts';
+import { getStatusThunk, getToUserIdProfile, updateStatusThunk,savePhotoThunk } from '../../redux/profile-person-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { AuthNavigate } from '../../hoc/AuthNavigate.jsx';
-import type { AppGlobalType } from '../../redux/redux-store.ts';
+import { AuthNavigate } from '../../hoc/AuthNavigate';
+import type { AppGlobalType } from '../../redux/redux-store';
 
 const ProfileContainer = () => {
   const store = useSelector((state: AppGlobalType) => state.profilePersonCom);

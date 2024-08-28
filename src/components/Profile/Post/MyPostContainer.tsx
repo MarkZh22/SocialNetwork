@@ -1,8 +1,8 @@
 import { useSelector,useDispatch} from 'react-redux';
-import { addNewPostActionCreator, updateNewPostTextTitle,updateNewPostTextBody } from '../../../redux/profile-reducer.ts';
-import MyPost from './MyPost.tsx';
+import { addNewPostActionCreator, updateNewPostTextTitle,updateNewPostTextBody } from '../../../redux/profile-reducer';
+import MyPost from './MyPost';
 import React from 'react';
-import type { AppGlobalType } from '../../../redux/redux-store.ts';
+import type { AppGlobalType } from '../../../redux/redux-store';
 const MyPostContainer = () => {
     const dispatch = useDispatch<any>()
     const store = useSelector((state: AppGlobalType )=> state.profileCom);

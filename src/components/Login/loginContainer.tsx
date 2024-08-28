@@ -1,7 +1,7 @@
-import Login from './login.tsx';
-import { getCaptchaUrlThunk, login, logout } from '../../redux/auth-reducer.ts';
+import Login from './login';
+import { getCaptchaUrlThunk, login, logout } from '../../redux/auth-reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppGlobalType } from '../../redux/redux-store.ts';
+import type { AppGlobalType } from '../../redux/redux-store';
 import React from 'react';
 
 const LoginContainer = () => {

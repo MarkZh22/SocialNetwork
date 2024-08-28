@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { ResultCodesEnum, usersAPI } from "../api/api.ts";
+import { ResultCodesEnum, usersAPI } from "../api/api";
 import { photosType } from "./profile-person-reducer";
 import type { AppGlobalType } from "./redux-store";
 

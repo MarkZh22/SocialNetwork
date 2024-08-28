@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import CurrentMessage from './CurrentMessage.tsx';
-import CurrentUser from './CurrentUser.tsx';
+import CurrentMessage from './CurrentMessage';
+import CurrentUser from './CurrentUser';
 import {initialStateType} from "../../redux/message-reducer"
 import { initialStateType as StoreUsers } from '../../redux/users-reducer';
 import React, { ChangeEvent } from 'react';
@@ -12,10 +12,10 @@ type PropsType = {
     storeUsers: StoreUsers
 }
 const Message: React.FC<PropsType> = (props) => {
-    const usersElemets = props.storeUsers.users.map(element => <CurrentUser name={element.name} key={element.id} id={element.id} />);
-    const messageElements = props.store.messageData.map(element => <CurrentMessage message={element.message} key={element.id} />);
+    const usersElemets: any = props.storeUsers.users.map(element => <CurrentUser name={element.name} key={element.id} id={element.id} />);
+    const messageElements: any = props.store.messageData.map(element => <CurrentMessage message={element.message} key={element.id} />);
     const sendMessage = () => {
-        let resTextarea = props.store.newTextMessage;
+        let resTextarea: string = props.store.newTextMessage;
         console.log('click to button: send message');
         if (resTextarea.length > 0) {
             props.addMessage();
@@ -39,13 +39,13 @@ const Message: React.FC<PropsType> = (props) => {
                             onChange={onChangeFun}
                             value={props.store.newTextMessage}
                             >
-                            
+
                         </TextareaElement>
                         <Button onClick={sendMessage}>Send message</Button>
                     </WrapperTextarea>
                 </FlexColumn>
             </FlexRow>
-        </Content> 
+        </Content>
     )
 }
 export default Message;
@@ -64,7 +64,7 @@ const TextareaElement = styled.textarea`
     padding:10px;
     font-size:16px;
     width: 100%;
-    border: 0.5px solid black;
+    border: 1px solid black;
     color: rgb(255 250 112);
     background-color:black;
     
@@ -102,11 +102,11 @@ const Users = styled.div`
     
 `;
 const FlexColumn = styled.div`
-    padding:10px;
+    padding: 10px;
     width: 100%;
-    align-items: left;
+    align-items: flex-start;  // Correct property value
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height:100vh;
+    height: 100vh;
 `;

@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-ignore
 import preloader from '../../assects/images/preloader.svg';
 import styled from 'styled-components';
 
